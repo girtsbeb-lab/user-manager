@@ -7,18 +7,15 @@ use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 class Kernel extends ConsoleKernel
 {
-    protected $commands = [];
+    protected $commands = [
+        \App\Console\Commands\ImportUsers::class,
+    ];
 
-    protected function schedule(Schedule $schedule): void
-    {
-        //
-    }
+    protected function schedule(Schedule $schedule): void {}
 
-    protected function bootstrappers(): array
+    protected function commands(): void
     {
-        return array_merge(
-            [\Illuminate\Foundation\Bootstrap\LoadEnvironmentVariables::class],
-            parent::bootstrappers(),
-        );
+        $this->load(__DIR__.'/Commands');
+        require base_path('routes/console.php');
     }
 }
