@@ -13,6 +13,7 @@ CRUD web aplikācija, kas importē lietotāju datus no RandomUser API un glabā 
 
 git clone https://github.com/girtsbeb-lab/user-manager.git
 cd user-manager
+chmod +x setup.sh
 ./setup.sh
 
 Skripts automātiski veic visus uzstādīšanas soļus un beigās atver `http://localhost:8080`.
