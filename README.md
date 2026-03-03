@@ -41,7 +41,7 @@ docker compose exec app composer install
 ### 5. Kopēt Laravel 10 middleware failus
 ```bash
 docker compose exec app composer create-project laravel/laravel:^10.0 /tmp/laravel10 --prefer-dist
-docker compose exec app cp -r /tmp/laravel10/app/Http/Middleware /var/www/app/Http/Middleware
+docker compose exec app cp /tmp/laravel10/app/Http/Middleware/*.php /var/www/app/Http/Middleware/
 docker compose exec app composer dump-autoload
 ```
 
