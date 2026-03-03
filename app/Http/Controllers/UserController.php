@@ -24,7 +24,8 @@ class UserController extends Controller
             ->when($request->gender, fn($q, $g) => $q->where('gender', $g))
             ->when($request->nationality, fn($q, $n) => $q->where('nationality', $n));
 
-        $users = $query->orderBy('last_name')->paginate(15)->withQueryString();
+        $perPage = (int) $request->input('per_page', 15);
+        $users = $query->orderBy('last_name')->paginate($perPage)->withQueryString();
 
         return Inertia::render('Users/Index', [
             'users'         => $users,

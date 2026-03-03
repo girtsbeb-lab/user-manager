@@ -72,6 +72,7 @@
         :items-per-page="users.per_page"
         item-value="id"
         @update:page="changePage"
+        @update:items-per-page="changePerPage"
       >
         <template #item.avatar="{ item }">
           <v-avatar size="36" class="my-1">
@@ -203,7 +204,17 @@ const applyFilters = () => {
 
 const changePage = (page) => {
   loading.value = true
-  router.get(route('users.index'), { ...filters, page }, {
+  router.get(route('users.index'), { ...filters, page, per_page: perPage.value }, {
+    preserveState: true,
+    onFinish: () => { loading.value = false },
+  })
+}
+
+const perPage = ref(15)
+const changePerPage = (val) => {
+  perPage.value = val
+  loading.value = true
+  router.get(route('users.index'), { ...filters, page: 1, per_page: val }, {
     preserveState: true,
     onFinish: () => { loading.value = false },
   })
