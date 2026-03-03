@@ -50,5 +50,9 @@ echo "👥 9. Importējam lietotājus no API..."
 docker compose exec app php artisan users:import
 
 echo ""
+echo "🔄 10. Restartējam Nginx..."
+docker compose restart nginx
+
+echo ""
 echo "✅ Viss gatavs!"
 echo "🌐 Atver pārlūkā: http://localhost:8080"
