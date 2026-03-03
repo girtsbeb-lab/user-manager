@@ -28,7 +28,7 @@ docker compose exec app composer install
 
 echo ""
 echo "🔧 5. Kopējam Laravel 10 middleware..."
-docker compose exec app composer create-project laravel/laravel:^10.0 /tmp/laravel10 --prefer-dist
+docker compose exec app composer create-project laravel/laravel:^10.0 /tmp/laravel10 --prefer-dist --no-scripts
 docker compose exec app cp /tmp/laravel10/app/Http/Middleware/*.php /var/www/app/Http/Middleware/
 docker compose exec app rm -rf /var/www/app/Http/Middleware/Middleware
 docker compose exec app composer dump-autoload
