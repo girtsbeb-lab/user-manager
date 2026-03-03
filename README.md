@@ -9,6 +9,16 @@ CRUD web aplikācija, kas importē lietotāju datus no RandomUser API un glabā 
 - **Build:** Vite 5
 - **Container:** Docker, Nginx
 
+## ⚡ Ātrā uzstādīšana (1 komanda)
+
+git clone https://github.com/girtsbeb-lab/user-manager.git
+cd user-manager
+./setup.sh
+
+Skripts automātiski veic visus uzstādīšanas soļus un beigās atver `http://localhost:8080`.
+
+---
+
 ## 🚀 Uzstādīšana ar Docker
 
 ### Priekšnosacījumi
