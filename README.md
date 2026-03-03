@@ -21,24 +21,28 @@ git clone https://github.com/girtsbeb-lab/user-manager.git
 cd user-manager
 ```
 
-### 2. Palaist konteinerus
+### 2. Uzstādīt vidi
 ```bash
 cp .env.example .env
+```
+
+### 3. Palaist konteinerus
+```bash
 docker compose up -d --build
 ```
 
-### 3. Instalēt Redis PHP extension
+### 4. Instalēt Redis PHP extension
 ```bash
-docker compose exec app bash -c "pecl install redis && docker-php-ext-enable redis"
+docker compose exec app bash -c "echo 'no' | pecl install redis && docker-php-ext-enable redis"
 docker compose restart app
 ```
 
-### 4. Instalēt Laravel dependencies
+### 5. Instalēt Laravel dependencies
 ```bash
 docker compose exec app composer install
 ```
 
-### 5. Kopēt Laravel 10 middleware failus
+### 6. Kopēt Laravel 10 middleware failus
 ```bash
 docker compose exec app composer create-project laravel/laravel:^10.0 /tmp/laravel10 --prefer-dist
 docker compose exec app cp /tmp/laravel10/app/Http/Middleware/*.php /var/www/app/Http/Middleware/
@@ -46,30 +50,30 @@ docker compose exec app rm -rf /var/www/app/Http/Middleware/Middleware
 docker compose exec app composer dump-autoload
 ```
 
-### 6. Uzstādīt aplikāciju
+### 7. Uzstādīt aplikāciju
 ```bash
 docker compose exec app php artisan key:generate
 docker compose exec app php artisan migrate
 ```
 
-### 7. Pārbūvēt frontend
+### 8. Pārbūvēt frontend
 ```bash
 docker compose run --rm node
 ```
 
-### 8. Importēt lietotājus
+### 9. Importēt lietotājus
 ```bash
 docker compose exec app php artisan users:import
 ```
 
-### 9. Atvērt pārlūkā
+### 10. Atvērt pārlūkā
 ```
 http://localhost:8080
 ```
 
-## 📋 Komandas
+## 📋 Noderīgas komandas
 ```bash
-# Importēt 50 lietotājus
+# Importēt 50 lietotājus (noklusējums)
 docker compose exec app php artisan users:import
 
 # Importēt 100 lietotājus
